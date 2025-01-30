@@ -10,21 +10,8 @@ body {
     background-color: #669bbc;
     color: #fdf0d5;
     padding: 10px;
-    /* height: 100vh; */
-    /* display: grid;
-    grid-template-columns: 1fr 4fr; */
-    /* gap: 10px; */
     position: relative;
 }
-
-/* .grid-wrap {
-    padding: 10px;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 10px;
-    position: relative;
-} */
 
 .book-info {
     position: fixed;
@@ -119,16 +106,8 @@ input[type="number"]:invalid:hover {
     outline-style: solid;
 }
 
-.radio-label {
-    display: block;
-    font-size: 1rem;
-    padding: 0 20px 0 10px;
-    float: left;
-}
-
-input[type="radio"] {
-    float: left;
-    margin-top: 2px;
+.check-form-row label {
+    width: auto;
 }
 
 .form-row button {

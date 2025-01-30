@@ -26,15 +26,12 @@
                 <label for="pages">Number of pages:</label>
                 <input type="number" name="pages" id="pages" min="1" value="1">
             </div>
-            <fieldset class="radio-form-row">
-                <legend>Book status:</legend>
-                <input type="radio" name="status" id="no" value="no" checked>
-                <label for="no" class="radio-label">Not read</label>
-                <input type="radio" name="status" id="yes" value="yes">
-                <label for="yes" class="radio-label">Read</label>
-            </fieldset>
+            <div class="check-form-row">
+                <input type="checkbox" name="read" id="read" value="read">
+                <label for="read">I've read this book</label>
+            </div>
             <div class="form-row">
-                <button>Add new book</button>
+                <button id="add-book">Add new book</button>
             </div>
         </form>
     </div>
@@ -43,21 +40,21 @@
             <h1>Your library</h1>
         </div>
         <div class="card-container">
-            <div class="book-card">
+            <!-- <div class="book-card">
                 <h2 class="book-title">Title</h2>
                 <h3 class="book-author">by Author</h3>
                 <div class="book-card-text">
                     <div class="book-emoji">📖</div>
                     <div class="text">
                         <p class="book-pages">pages</p>
-                        <p class="book-staus">Not read</p>
+                        <p class="book-status">Not read</p>
                     </div>
                 </div>
                 <div class="buttons">
                     <button id="delete">✖</button>
                     <button id="read-status">Change status</button>
                 </div>
-            </div>  
+            </div>   -->
         </div>
     </div>
     <script src="script.js"></script>
