@@ -176,6 +176,7 @@ input[type="number"]:invalid:hover {
 
 .book-title {
     font-size: 1.2rem;
+    text-align: center;
 }
 
 .book-author  {
