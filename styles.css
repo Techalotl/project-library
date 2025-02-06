@@ -148,7 +148,7 @@ input[type="number"]:invalid:hover {
     border: solid 2px #c1121f;
     border-radius: 5px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px,300px));
+    grid-template-columns: repeat(auto-fit, minmax(250px,350px));
     grid-auto-rows: 300px;
     gap: 20px;
     justify-content: center;
@@ -183,6 +183,8 @@ input[type="number"]:invalid:hover {
     font-size: 1rem;
     font-weight: 300;
     margin: -15px;
+    text-align: center;
+    width: 98%;
 }
 
 .book-emoji {
@@ -212,6 +214,7 @@ input[type="number"]:invalid:hover {
     border-radius: 8px;
     border: #669bbc solid 1px;
     padding: 10px;
+    margin-top: -10px;
     cursor: pointer;
 }
 
