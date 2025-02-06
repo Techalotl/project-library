@@ -10,6 +10,12 @@ function Book (title, author, pages, read) {
     this.read = read;
 };
 
+Book.prototype.changeStatus = function () {
+    if (this.read == "Read") {
+        this.read = "Unread";
+    } else {this.read = "Read"};
+}
+
 const exampleBook = new Book ("Emma", "Jane Austen", 474, "Unread");
 const exampleBook1 = new Book ("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 224, "Read");
 const exampleBook2 = new Book("Behave: The Biology of Humans at Our Best and Worst", "Robert Sapolsky", 800, "Read")
@@ -32,7 +38,7 @@ function showBook() {
                     </div>
                 </div>
             <div class="buttons">
-                <button id="delete" class=${[i]}>✖</button>
+                <button id="delete" class="${[i]}">✖</button>
                 <button id="read-status" class="read-status-${[i]}">Change status</button>
             </div>
         </div>`;
@@ -64,8 +70,12 @@ submit.addEventListener("click", (e) => {
 })
 
 cardContainer.addEventListener("click", e => {
-    console.log(e.target.className);
-    myLibrary.splice(e.target.className, 1);
-    console.log(myLibrary);
-    showBook();
+    console.log(e);
+    console.log(e.target.id)
+    if (e.target.id == "delete") {
+        console.log(e.target.className);
+        myLibrary.splice(e.target.className, 1);
+        console.log(myLibrary);
+        showBook();
+    } else {return};
 })
