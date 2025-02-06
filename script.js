@@ -39,7 +39,7 @@ function showBook() {
                 </div>
             <div class="buttons">
                 <button id="delete" class="${[i]}">✖</button>
-                <button id="read-status" class="read-status-${[i]}">Change status</button>
+                <button id="read-status" class="${[i]}">Change status</button>
             </div>
         </div>`;
         cardContainer.innerHTML += cardCode;
@@ -75,6 +75,17 @@ cardContainer.addEventListener("click", e => {
     if (e.target.id == "delete") {
         console.log(e.target.className);
         myLibrary.splice(e.target.className, 1);
+        console.log(myLibrary);
+        showBook();
+    } else {return};
+})
+
+cardContainer.addEventListener("click", e => {
+    console.log(e);
+    console.log(e.target.id)
+    if (e.target.id == "read-status") {
+        console.log(e.target.className);
+        myLibrary[e.target.className].changeStatus();
         console.log(myLibrary);
         showBook();
     } else {return};
