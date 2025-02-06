@@ -24,7 +24,6 @@ showBook();
 
 function showBook() {
     cardContainer.innerHTML = "";
-    console.log(myLibrary);
     for (let i = 0; i < myLibrary.length; i++) {
         let cardCode = 
         `<div class="book-card">
@@ -51,15 +50,12 @@ function addBookToLibrary() {
     const author = document.querySelector("input[name=author]").value;
     const pages = document.querySelector("input[name=pages]").value;
     const read = document.querySelector("input[name=read]").checked;
-    console.log(read);
     let bookStatus;
     if (read == true) {
         bookStatus = "Read"
     } else {bookStatus = "Unread"}
     let newBook = new Book(title, author, pages, bookStatus);
-    console.log(newBook);
     myLibrary.push(newBook);
-    console.log(bookStatus);
     showBook();
     bookForm.reset();
 }
@@ -70,23 +66,15 @@ submit.addEventListener("click", (e) => {
 })
 
 cardContainer.addEventListener("click", e => {
-    console.log(e);
-    console.log(e.target.id)
     if (e.target.id == "delete") {
-        console.log(e.target.className);
         myLibrary.splice(e.target.className, 1);
-        console.log(myLibrary);
         showBook();
     } else {return};
 })
 
 cardContainer.addEventListener("click", e => {
-    console.log(e);
-    console.log(e.target.id)
     if (e.target.id == "read-status") {
-        console.log(e.target.className);
         myLibrary[e.target.className].changeStatus();
-        console.log(myLibrary);
         showBook();
     } else {return};
 })
