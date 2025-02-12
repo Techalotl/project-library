@@ -1,7 +1,7 @@
 const myLibrary = [];
 const bookForm = document.querySelector(".book-form");
 const submit = document.querySelector("#add-book");
-const cardContainer = document.querySelector(".card-container")
+const cardContainer = document.querySelector(".card-container");
 
 function Book (title, author, pages, read) {
     this.title = title;
@@ -25,23 +25,48 @@ showBook();
 function showBook() {
     cardContainer.innerHTML = "";
     for (let i = 0; i < myLibrary.length; i++) {
-        let cardCode = 
-        `<div class="book-card">
-            <h2 class="book-title">"${myLibrary[i].title}"</h2>
-            <h3 class="book-author">by ${myLibrary[i].author}</h3>
-                <div class="book-card-text">
-                    <div class="book-emoji">📖</div>
-                    <div class="text">
-                        <p class="book-pages">${myLibrary[i].pages} pages</p>
-                        <p class="book-status">${myLibrary[i].read}</p>
-                    </div>
-                </div>
-            <div class="buttons">
-                <button id="delete" class="${[i]}">✖</button>
-                <button id="read-status" class="${[i]}">Change status</button>
-            </div>
-        </div>`;
-        cardContainer.innerHTML += cardCode;
+        const bookCard = document.createElement("div");
+        const bookTitle = document.createElement("h2");
+        const bookAuthor = document.createElement("h3");
+        const bookCardText = document.createElement("div");
+        const emoji = document.createElement("div");
+        const textDiv = document.createElement("div");
+        const bookPages = document.createElement("p");
+        const bookRead = document.createElement("p");
+        const buttons = document.createElement("div");
+        const deleteButton = document.createElement("button");
+        const readStatus = document.createElement("button");
+        cardContainer.appendChild(bookCard);
+        bookCard.setAttribute("class", "book-card");
+        bookCard.appendChild(bookTitle);
+        bookTitle.setAttribute("class", "book-title");
+        bookCard.appendChild(bookAuthor);
+        bookAuthor.setAttribute("class", "book-author");
+        bookCard.appendChild(bookCardText);
+        bookCardText.setAttribute("class", "book-card-text");
+        bookCardText.appendChild(emoji);
+        emoji.setAttribute("class", "book-emoji");
+        emoji.textContent = "📖";
+        bookCardText.appendChild(textDiv);
+        textDiv.setAttribute("class", "text");
+        textDiv.appendChild(bookPages);
+        bookPages.setAttribute("class", "book-pages");
+        textDiv.appendChild(bookRead);
+        bookRead.setAttribute("class", "book-status");
+        bookCard.appendChild(buttons);
+        buttons.setAttribute("class", "buttons");
+        buttons.appendChild(deleteButton);
+        deleteButton.setAttribute("id", "delete");
+        deleteButton.textContent = "✖";
+        buttons.appendChild(readStatus);
+        readStatus.setAttribute("id", "read-status");
+        readStatus.textContent = "Change status";
+        bookTitle.textContent = `"${myLibrary[i].title}"`;
+        bookAuthor.textContent = `by ${myLibrary[i].author}`;
+        bookPages.textContent = `${myLibrary[i].pages} pages`;
+        bookRead.textContent = myLibrary[i].read;
+        deleteButton.setAttribute("class", `${[i]}`);
+        readStatus.setAttribute("class", `${[i]}`);
     }
 }
 
