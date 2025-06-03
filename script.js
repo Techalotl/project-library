@@ -3,17 +3,16 @@ const bookForm = document.querySelector(".book-form");
 const submit = document.querySelector("#add-book");
 const cardContainer = document.querySelector(".card-container");
 
-function Book (title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-};
-
-Book.prototype.changeStatus = function () {
-    if (this.read == "Read") {
-        this.read = "Unread";
-    } else {this.read = "Read"};
+class Book {
+    constructor (title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+    changeStatus() {
+        this.read === "Read" ? this.read = "Unread" : this.read = "Read";
+    }
 }
 
 const exampleBook = new Book ("Emma", "Jane Austen", 474, "Unread");
@@ -91,14 +90,14 @@ submit.addEventListener("click", (e) => {
 })
 
 cardContainer.addEventListener("click", e => {
-    if (e.target.id == "delete") {
+    if (e.target.id === "delete") {
         myLibrary.splice(e.target.className, 1);
         showBook();
     } else {return};
 })
 
 cardContainer.addEventListener("click", e => {
-    if (e.target.id == "read-status") {
+    if (e.target.id === "read-status") {
         myLibrary[e.target.className].changeStatus();
         showBook();
     } else {return};
