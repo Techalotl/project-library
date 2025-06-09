@@ -1,17 +1,29 @@
 const myLibrary = [];
-const bookForm = document.querySelector(".book-form");
 const submit = document.querySelector("#add-book");
 const cardContainer = document.querySelector(".card-container");
 
 class Book {
-    constructor (title, author, pages, read) {
+    constructor (title, author, pages, status) {
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.read = read;
+        this.status = status;
     }
     changeStatus() {
-        this.read === "Read" ? this.read = "Unread" : this.read = "Read";
+        this.status === "Read" ? this.status = "Unread" : this.status = "Read";
+    }
+}
+
+class Element {
+    constructor(elementType) {
+        // this.elementName = elementName;
+        this.elementType = elementType;
+        // this.attributeType = attributeType;
+        // this.attributeName = attributeName;
+    }
+    produceElement() {
+        document.createElement(this.elementType);
+        // (this.elementName).setAttribute(this.attributeType, this.attributeName);
     }
 }
 
@@ -24,6 +36,8 @@ showBook();
 function showBook() {
     cardContainer.innerHTML = "";
     for (let i = 0; i < myLibrary.length; i++) {
+        // const bookCard = new Element("div");
+        // bookCard.produceElement();
         const bookCard = document.createElement("div");
         const bookTitle = document.createElement("h2");
         const bookAuthor = document.createElement("h3");
@@ -63,30 +77,31 @@ function showBook() {
         bookTitle.textContent = `"${myLibrary[i].title}"`;
         bookAuthor.textContent = `by ${myLibrary[i].author}`;
         bookPages.textContent = `${myLibrary[i].pages} pages`;
-        bookRead.textContent = myLibrary[i].read;
+        bookRead.textContent = myLibrary[i].status;
         deleteButton.setAttribute("class", `${[i]}`);
         readStatus.setAttribute("class", `${[i]}`);
     }
 }
 
-function addBookToLibrary() {
-    const title = document.querySelector("input[name=title]").value;
-    const author = document.querySelector("input[name=author]").value;
-    const pages = document.querySelector("input[name=pages]").value;
-    const read = document.querySelector("input[name=read]").checked;
-    let bookStatus;
-    if (read == true) {
-        bookStatus = "Read"
-    } else {bookStatus = "Unread"}
-    let newBook = new Book(title, author, pages, bookStatus);
-    myLibrary.push(newBook);
-    showBook();
-    bookForm.reset();
+class BookToLibrary {
+    addingBook(title, author, pages, status) {
+        let bookStatus;
+        status === true ? bookStatus = "Read" : bookStatus = "Unread";
+        const newBook = new Book(title, author, pages, bookStatus);
+        myLibrary.push(newBook);
+        showBook();
+        const bookForm = document.querySelector(".book-form");
+        bookForm.reset();
+    }
 }
 
 submit.addEventListener("click", (e) => {
     e.preventDefault();
-    addBookToLibrary();
+    const book = new BookToLibrary();
+    book.addingBook(document.querySelector("input[name=title]").value,
+                    document.querySelector("input[name=author]").value,
+                    document.querySelector("input[name=pages]").value,
+                    document.querySelector("input[name=read]").checked)
 })
 
 cardContainer.addEventListener("click", e => {
