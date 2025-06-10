@@ -14,19 +14,6 @@ class Book {
     }
 }
 
-class Element {
-    constructor(elementType) {
-        // this.elementName = elementName;
-        this.elementType = elementType;
-        // this.attributeType = attributeType;
-        // this.attributeName = attributeName;
-    }
-    produceElement() {
-        document.createElement(this.elementType);
-        // (this.elementName).setAttribute(this.attributeType, this.attributeName);
-    }
-}
-
 const exampleBook = new Book ("Emma", "Jane Austen", 474, "Unread");
 const exampleBook1 = new Book ("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", 224, "Read");
 const exampleBook2 = new Book("Behave: The Biology of Humans at Our Best and Worst", "Robert Sapolsky", 800, "Read")
@@ -36,8 +23,6 @@ showBook();
 function showBook() {
     cardContainer.innerHTML = "";
     for (let i = 0; i < myLibrary.length; i++) {
-        // const bookCard = new Element("div");
-        // bookCard.produceElement();
         const bookCard = document.createElement("div");
         const bookTitle = document.createElement("h2");
         const bookAuthor = document.createElement("h3");
@@ -97,9 +82,13 @@ class BookToLibrary {
 
 submit.addEventListener("click", (e) => {
     e.preventDefault();
+    const titleField = document.querySelector("#title");
+    const authorField = document.querySelector("#author");
+    if (titleField.value === "" || authorField.value === "") {
+        return;
+    }
     const book = new BookToLibrary();
-    book.addingBook(document.querySelector("input[name=title]").value,
-                    document.querySelector("input[name=author]").value,
+    book.addingBook(titleField.value, authorField.value,
                     document.querySelector("input[name=pages]").value,
                     document.querySelector("input[name=read]").checked)
 })
