@@ -80,18 +80,37 @@ class BookToLibrary {
     }
 }
 
-submit.addEventListener("click", (e) => {
-    e.preventDefault();
-    const titleField = document.querySelector("#title");
-    const authorField = document.querySelector("#author");
-    if (titleField.value === "" || authorField.value === "") {
-        return;
-    }
-    const book = new BookToLibrary();
-    book.addingBook(titleField.value, authorField.value,
+submit.addEventListener("click", () => {
+    checkValidity(document.querySelector("#title"), document.querySelector("#author"), document.querySelector("#pages"))
+})
+
+function checkValidity (input1, input2, input3) {
+    if (!input1.validity.valueMissing && !input2.validity.valueMissing && !input3.validity.rangeUnderflow) {
+        input1.setCustomValidity('');
+        input2.setCustomValidity('');
+        input3.setCustomValidity('');
+        const book = new BookToLibrary();
+        book.addingBook(document.querySelector("#title").value,
+                    document.querySelector("#author").value,
                     document.querySelector("input[name=pages]").value,
                     document.querySelector("input[name=read]").checked)
-})
+    } else if (input2.validity.valueMissing) {
+        input1.setCustomValidity('');
+        input2.setCustomValidity('The author name must be filled!');
+        input3.setCustomValidity('');
+        return
+    } else if (input3.validity.rangeUnderflow) {
+        input1.setCustomValidity('');
+        input2.setCustomValidity('');
+        input3.setCustomValidity("What book has 0 pages? Come on!");
+        return
+    } else {
+        input1.setCustomValidity('Please add a title');
+        input2.setCustomValidity('');
+        input3.setCustomValidity('');
+        return
+    }
+}
 
 cardContainer.addEventListener("click", e => {
     if (e.target.id === "delete") {
